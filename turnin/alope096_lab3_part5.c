@@ -25,13 +25,13 @@ int main(void) {
        //Read input
        weight = (PIND << 1) | (PINB & 0x1);
        //computation
-       if(weight >= 170){
+       if(weight >= 70){
          airBagsOn = 0x02;
        }
        else{
          airBagsOn = 0x0;
        }
-       if ((weight > 5) && (weight <170)){
+       if ((weight > 5) && (weight <70)){
          airBagDisabled = 0x04;
        }
        else{
