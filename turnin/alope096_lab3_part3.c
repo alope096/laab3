@@ -26,6 +26,7 @@ int main(void) {
     unsigned char driverSeated;
     unsigned char beltOn;
     unsigned char allInOne;
+    unsigned char lightOn;
     /* Insert your solution below */
     while (1) {
        //Read input
@@ -37,7 +38,8 @@ int main(void) {
       ignitionOn = 0x00;
       driverSeated = 0x00;
       beltOn = 0x00;
-      allInOne = 0x80;
+      allInOne = 0x00;
+      lightOn = 0x00;
        // perform computation
       if(fuelLevelSensor == 0x01 || fuelLevelSensor == 0x02){
          outputFuel = 0x20;
@@ -73,16 +75,20 @@ int main(void) {
        else{
          lowFuel = 0x00;
        }
-      if(vehicleSensor == 0x10){
+      if((vehicleSensor&0x10) == 0x10){
         ignitionOn = 0x01;
       }
-      if(vehicleSensor == 0x20){
+      if((vehicleSensor&0x20) == 0x20){
         driverSeated = 0x01;
       }
-      if(vehicleSensor == 0x40){
+      if((vehicleSensor&0x40) == 0x40){
         beltOn = 0x01;
       }
-      if ((ignitionOn & driverSeated & beltOn) == 0x01){
+      else{
+        beltOn = 0x00;
+      }
+      lightOn =ignitionOn & driverSeated;
+      if ((lightOn == 0x01) && (beltOn==0x00)){
         allInOne = 0x80;
       }
     

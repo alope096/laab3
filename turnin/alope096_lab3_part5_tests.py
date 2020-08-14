@@ -14,32 +14,42 @@
 # An example set of tests is shown below. It is important to note that these tests are not "unit tests" in 
 # that they are not ran in isolation but in the order shown and the state of the device is not reset or 
 # altered in between executions (unless preconditions are used).
-tests = [ {'description': 'PINA 0x00.',
-    'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x40)],
+tests = [ {'description': 'PINB 0x00  & PIND 0x55.',
+    'steps': [ {'inputs': [('PINB',0x00)], 'iterations': 1 } ],
+    'steps': [ {'inputs': [('PIND',0x55)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x02)],
     },
-    {'description': 'PINA 0x83.',
-    'steps': [ {'inputs': [('PINA',0x83)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x70)],
+    {'description': 'PINB 0x01  & PIND 0x52.',
+    'steps': [ {'inputs': [('PINB',0x01)], 'iterations': 1 } ],
+    'steps': [ {'inputs': [('PIND',0x52)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x04)],
     },
-    {'description': 'PINA 0x07.',
-    'steps': [ {'inputs': [('PINA',0x07)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x3C)],
+    {'description': 'PINB 0x00  & PIND 0x04.',
+    'steps': [ {'inputs': [('PINB',0x00)], 'iterations': 1 } ],
+    'steps': [ {'inputs': [('PIND',0x04)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x04)],
     },
-    {'description': 'PINA 0x3F.',
-    'steps': [ {'inputs': [('PINA',0x3F)], 'iterations': 1 } ],
-    'expected': [('PORTC',0xBF)],
+    {'description': 'PINB 0x00  & PIND 0x02.',
+    'steps': [ {'inputs': [('PINB',0x00)], 'iterations': 1 } ],
+    'steps': [ {'inputs': [('PIND',0x02)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x00)],
     },
-    {'description': 'PINA 0x7F.',
-    'steps': [ {'inputs': [('PINA',0x7F)], 'iterations': 1 } ],
-    'expected': [('PORTC',0x3F)],
+    {'description': 'PINB 0x01  & PIND 0x01.',
+    'steps': [ {'inputs': [('PINB',0x01)], 'iterations': 1 } ],
+    'steps': [ {'inputs': [('PIND',0x01)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x00)],
+    },
+    {'description': 'PINB 0x01  & PIND 0xFF.',
+    'steps': [ {'inputs': [('PINB',0x01)], 'iterations': 1 } ],
+    'steps': [ {'inputs': [('PIND',0xFF)], 'iterations': 1 } ],
+    'expected': [('PORTB',0x02)],
     },
     ]
 
 # Optionally you can add a set of "watch" variables these need to be global or static and may need
 # to be scoped at the function level (for static variables) if there are naming conflicts. The 
 # variables listed here will display everytime you hit (and stop at) a breakpoint
-watch=['main::fuelLevel','main::outputFuel','main::lowFuel','main::fuelLevelSensor','main::vehicleSensor','main::ignitionOn','main::driverSeated','main::beltOn','main::allInOne','PORTC', 'PINA']
+watch=['main::weight','main::airBagsOn','main::airBagDisabled','PORTB', 'PINB', 'PIND']
 
 
 
