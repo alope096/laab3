@@ -16,16 +16,16 @@
 # altered in between executions (unless preconditions are used).
 tests = [ {'description': 'PINA 0xFF.',
     'steps': [ {'inputs': [('PINA',0xFF)], 'iterations': 1 } ],
-    'expected': [('PORTC',16)],
+    'expected': [('PORTC',8)],
     },
-    #{'description': 'PINB 0xFF.',
-    #'steps': [ {'inputs': [('PINB',0xFF)], 'iterations': 1 } ],
-    #'expected': [('PORTD',32)],
-    #},
+    {'description': 'PINB 0xFF.',
+    'steps': [ {'inputs': [('PINB',0xFF)], 'iterations': 1 } ],
+    'expected': [('PORTC',8)],
+    },
     ]
 
 # Optionally you can add a set of "watch" variables these need to be global or static and may need
 # to be scoped at the function level (for static variables) if there are naming conflicts. The 
 # variables listed here will display everytime you hit (and stop at) a breakpoint
-watch = ['main::onesA','main::onesB','main::onesOnA','main::onesOnB','main::totalOnes','PORTC', 'PINA', 'PINB']
+watch = ['main::onesTopA','main::onesBottomA','main::onesTopB','main::onesBottomB','main::onesOnTopA','main::onesOnBottomA','main::onesOnBottomB','main::onesOnTopB','main::totalOnes','PORTC', 'PINA', 'PINB']
 
